@@ -9,7 +9,8 @@ import org.springframework.stereotype.Service;
 public class CommandService {
 
 	public String executeCommand(String command) {
-
+		
+		System.out.println("running, the cmd: " + command);
 		StringBuffer output = new StringBuffer();
 
 		Process p = null;
