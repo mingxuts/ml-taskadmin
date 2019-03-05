@@ -32,6 +32,7 @@ public class CommandService {
 			}
 		}
 
+		System.out.println(output.toString());
 		return output.toString();
 	}
 }
