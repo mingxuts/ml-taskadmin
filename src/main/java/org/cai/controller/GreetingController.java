@@ -17,35 +17,35 @@ import com.fasterxml.uuid.Generators;
 
 @Controller
 public class GreetingController {
-	
+
 	@Autowired
 	private FileStorageService fileStorageService;
-	
-	@Autowired
-	private  CommandService cmdService ;
 
-    @MessageMapping("/hello")
-    @SendTo("/topic/greetings")
-    public Greeting greeting(HelloMessage message) throws Exception {
-        Thread.sleep(1000); // simulated delay
-        handle(message);
-        return new Greeting("Command, " + HtmlUtils.htmlEscape(message.getRuncmd()) + "!");
-    }
-    
-    private void handle(HelloMessage message) {
-    	Script shscr = new Script();
-    	String env = message.getEnvname();
-    	String dev = message.getCudadevs();
-    	String cmd = message.getRuncmd();
-    	String workdir = message.getWorkdir();
-    	System.out.print(shscr.toString(env, dev, cmd, workdir));
-    	
-    	String taskdir = Generators.randomBasedGenerator().generate().toString();
-    	String script = fileStorageService.saveText(taskdir, "script.txt", shscr.toString(env, dev, cmd, workdir));
-    	
-    	File scriptFile = new File(script);
-    	String[] ssh_cmd =  { "/bin/bash", "-c", "cd " + scriptFile.getParent() + "; ssh -t delta \"$(cat script.txt)\" | tee -a out.txt " };
-    	//ssh_cmd += " |& tee " + scriptFile.getParent() + "/cmd.txt";
-    	cmdService.executeCommand(ssh_cmd);
-    }
+	@Autowired
+	private CommandService cmdService;
+
+	@MessageMapping("/hello")
+	@SendTo("/topic/greetings")
+	public Greeting greeting(HelloMessage message) throws Exception {
+		Thread.sleep(1000); // simulated delay
+		handle(message);
+		return new Greeting("Command, " + HtmlUtils.htmlEscape(message.getRuncmd()) + "!");
+	}
+
+	private void handle(HelloMessage message) {
+		Script shscr = new Script();
+		String env = message.getEnvname();
+		String dev = message.getCudadevs();
+		String cmd = message.getRuncmd();
+		String workdir = message.getWorkdir();
+		System.out.print(shscr.toString(env, dev, cmd, workdir));
+
+		String taskdir = Generators.randomBasedGenerator().generate().toString();
+		String script = fileStorageService.saveText(taskdir, "script.txt", shscr.toString(env, dev, cmd, workdir));
+
+		File scriptFile = new File(script);
+		String ssh_cmd = "cd " + scriptFile.getParent() + "; ssh -t delta \"$(cat script.txt)\" | tee -a out.txt ";
+		String[] cmds = { "/bin/bash", "-c", ssh_cmd };
+		cmdService.executeCommand(cmds);
+	}
 }
