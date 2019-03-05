@@ -27,6 +27,7 @@ public class CommandService {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.out.println("something wrong:" + e.getMessage());
 			if (p!= null) {
 				p.destroy();
 			}
