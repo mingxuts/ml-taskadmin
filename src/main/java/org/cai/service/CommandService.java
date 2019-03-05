@@ -10,7 +10,7 @@ public class CommandService {
 
 	public String executeCommand(String command) {
 		
-		System.out.println("running, the cmd: " + command);
+		System.out.println("running subprocess, " + command);
 		StringBuffer output = new StringBuffer();
 
 		Process p = null;
