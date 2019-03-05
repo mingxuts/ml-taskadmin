@@ -33,15 +33,23 @@ public class Script {
 		return envPrepare;
 	}
 	
-	public String toString(String env, String device, String cmd) {
+	public String toString(String env, String device, String cmd, String workdirectory) {
 		String str = this.interpreter;
 		str += this.lineEndings;
 		str += this.lineEndings;
 		str += this.envPrepare + " " + env;
-		str += ";" + this.lineEndings;
+		str += addCommaEnd();
+		if (! "".equalsIgnoreCase(workdirectory.trim())) {
+			str += "cd " + workdirectory;
+			str += addCommaEnd();
+		}
 		str += "CUDA_VISIBLE_DEVICES=" + device + " ";
-		str += cmd + ";" +  this.lineEndings;
-		str += "exit";
+		str += cmd + addCommaEnd();
+		str += "exit" + addCommaEnd();
 		return str;
+	}
+	
+	private String addCommaEnd() {
+		return ";" +  this.lineEndings;
 	}
 }

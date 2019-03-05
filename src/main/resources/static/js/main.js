@@ -6,6 +6,7 @@ var taskform = document.querySelector('#taskform');
 var taskEnvnameInput = document.querySelector('#env_name');
 var taskCudadevInput = document.querySelector('#cuda_devs');
 var taskRuncmdInput = document.querySelector('#run_cmd');
+var taskWorkdirInput = document.querySelector('#workdir');
 
 function setConnected(connected) {
     $("#connect").prop("disabled", connected);
@@ -43,7 +44,8 @@ function sendName() {
 	var taskdata = {
 		envname: taskEnvnameInput.value,
 		cudadevs: taskCudadevInput.value,
-		runcmd: taskRuncmdInput.value
+		runcmd: taskRuncmdInput.value,
+		workdir: taskWorkdirInput.value
 	};
     stompClient.send("/app/hello", {}, JSON.stringify(taskdata));
 }

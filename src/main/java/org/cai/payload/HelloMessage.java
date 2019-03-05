@@ -3,17 +3,19 @@ package org.cai.payload;
 public class HelloMessage {
 	
     private String envname;
-    private String cudadev;
+    private String cudadevs;
     private String runcmd;
+    private String workdir;
 
     public HelloMessage() {
     }
 
-	public HelloMessage(String envname, String cudadev, String runcmd) {
+	public HelloMessage(String envname, String cudadevs, String runcmd, String workdir) {
 		super();
 		this.envname = envname;
-		this.cudadev = cudadev;
+		this.cudadevs = cudadevs;
 		this.runcmd = runcmd;
+		this.workdir = workdir;
 	}
 
 	public String getEnvname() {
@@ -24,14 +26,6 @@ public class HelloMessage {
 		this.envname = envname;
 	}
 
-	public String getCudadev() {
-		return cudadev;
-	}
-
-	public void setCudadev(String cudadev) {
-		this.cudadev = cudadev;
-	}
-
 	public String getRuncmd() {
 		return runcmd;
 	}
@@ -40,5 +34,20 @@ public class HelloMessage {
 		this.runcmd = runcmd;
 	}
 
+	public String getWorkdir() {
+		return workdir;
+	}
+
+	public void setWorkdir(String workdir) {
+		this.workdir = workdir;
+	}
+
+	public String getCudadevs() {
+		return cudadevs;
+	}
+
+	public void setCudadevs(String cudadevs) {
+		this.cudadevs = cudadevs;
+	}
 	
 }
