@@ -44,7 +44,7 @@ public class GreetingController {
     	String script = fileStorageService.saveText(taskdir, "script.txt", shscr.toString(env, dev, cmd, workdir));
     	
     	File scriptFile = new File(script);
-    	String ssh_cmd = "ssh delta date";
+    	String ssh_cmd = "cd all-task/b98574a2-67a1-48e7-8574-a267a1d8e7eb; ssh delta < script.txt";
     	//ssh_cmd += " |& tee " + scriptFile.getParent() + "/cmd.txt";
     	cmdService.executeCommand(ssh_cmd);
     }
