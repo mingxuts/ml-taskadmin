@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class CommandService {
 
-	public String executeCommand(String command) {
+	public String executeCommand(String[] command) {
 		
-		System.out.println("running subprocess, " + command);
+		//System.out.println("running subprocess, " + command);
 		StringBuffer output = new StringBuffer();
 
 		Process p = null;
