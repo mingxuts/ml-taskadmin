@@ -41,7 +41,7 @@ public class GreetingController {
     	String taskdir = Generators.randomBasedGenerator().generate().toString();
     	String script = fileStorageService.saveText(taskdir, "script.txt", shscr.toString(env, dev, cmd, workdir));
     	
-    	String ssh_cmd = "ssh -t gamma < \"$(cat " + script + ")\"";
+    	String ssh_cmd = "ssh -t delta < \"$(cat " + script + ")\"";
     	cmdService.executeCommand(ssh_cmd);
     }
 }

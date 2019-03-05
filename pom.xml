@@ -9,7 +9,7 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.cai</groupId>
-	<artifactId>david side projects</artifactId>
+	<artifactId>mladmin</artifactId>
 	<version>1.0</version>
 	<name>gridsearch_configmg</name>
 	<description>A manager tool for machine learning parameter grid search</description>
