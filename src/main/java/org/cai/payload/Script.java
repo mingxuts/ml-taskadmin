@@ -34,10 +34,10 @@ public class Script {
 	}
 	
 	public String toString(String env, String device, String cmd, String workdirectory) {
-		String str = this.interpreter;
-		str += this.lineEndings;
-		str += this.lineEndings;
-		str += this.envPrepare + " " + env;
+		//String str = this.interpreter;
+		//str += this.lineEndings;
+		//str += this.lineEndings;
+		String str = this.envPrepare + " " + env;
 		str += addCommaEnd();
 		if (! "".equalsIgnoreCase(workdirectory.trim())) {
 			str += "cd " + workdirectory;
