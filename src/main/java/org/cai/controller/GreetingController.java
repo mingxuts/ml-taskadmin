@@ -2,7 +2,7 @@ package org.cai.controller;
 
 import java.io.File;
 
-import org.cai.payload.Greeting;
+import org.cai.payload.Taskmeta;
 import org.cai.payload.HelloMessage;
 import org.cai.payload.Script;
 import org.cai.service.CommandService;
@@ -26,13 +26,13 @@ public class GreetingController {
 
 	@MessageMapping("/hello")
 	@SendTo("/topic/greetings")
-	public Greeting greeting(HelloMessage message) throws Exception {
-		Thread.sleep(1000); // simulated delay
-		handle(message);
-		return new Greeting("Command, " + HtmlUtils.htmlEscape(message.getRuncmd()) + "!");
+	public Taskmeta greeting(HelloMessage message) throws Exception {
+		Thread.sleep(200); // simulated delay
+		
+		return handle(message);
 	}
 
-	private void handle(HelloMessage message) {
+	private Taskmeta handle(HelloMessage message) {
 		Script shscr = new Script();
 		String env = message.getEnvname();
 		String dev = message.getCudadevs();
@@ -42,10 +42,15 @@ public class GreetingController {
 
 		String taskdir = Generators.randomBasedGenerator().generate().toString();
 		String script = fileStorageService.saveText(taskdir, "script.txt", shscr.toString(env, dev, cmd, workdir));
+		
+		Taskmeta taskmeta = new Taskmeta(taskdir, script);
+		taskmeta.setCmd(cmd);
+		return taskmeta;
 
-		File scriptFile = new File(script);
-		String ssh_cmd = "cd " + scriptFile.getParent() + "; ssh -t delta \"$(cat script.txt)\" | tee -a out.txt ";
-		String[] cmds = { "/bin/bash", "-c", ssh_cmd };
-		cmdService.executeCommand(cmds);
+		//File scriptFile = new File(script);
+		//String ssh_cmd = "cd " + scriptFile.getParent() + "; ssh -t delta \"$(cat script.txt)\" | tee -a out.txt ";
+		//String ssh_cmd = "ssh delta date";
+		//String[] cmds = {"cmd", "/C", ssh_cmd };
+		//cmdService.executeCommand(cmds);
 	}
 }

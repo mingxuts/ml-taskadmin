@@ -52,10 +52,19 @@
 						<label for="workdir">Execute directory:</label> <input type="text"
 							id="workdir" class="form-control" placeholder="working dir here..." value="~/tf_home/fed_test/models">
 					</div>									
-					<button id="send" class="btn btn-default" type="submit">Send</button>
+					<button id="send" class="btn btn-default" type="submit">Save</button>
 				</form>
 			</div>		
 			<div class="col-md-6">
+				<form class="form" id="listform">
+					<div class="radio">
+						<label><input type="radio" name="host">QCIS</label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" name="host">Private_nodes (delta, beta)</label>
+					</div>
+					<button id="start" class="btn btn-default" type="submit">Start</button>
+				</form>
 				<table id="conversation" class="table table-striped">
 					<thead>
 						<tr>

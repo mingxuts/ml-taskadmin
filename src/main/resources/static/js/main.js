@@ -8,6 +8,8 @@ var taskCudadevInput = document.querySelector('#cuda_devs');
 var taskRuncmdInput = document.querySelector('#run_cmd');
 var taskWorkdirInput = document.querySelector('#workdir');
 
+var listform = document.querySelector('#listform');
+
 function setConnected(connected) {
     $("#connect").prop("disabled", connected);
     $("#disconnect").prop("disabled", !connected);
@@ -26,8 +28,8 @@ function connect() {
     stompClient.connect({}, function (frame) {
         setConnected(true);
         console.log('Connected: ' + frame);
-        stompClient.subscribe('/topic/greetings', function (greeting) {
-            showGreeting(JSON.parse(greeting.body).content);
+        stompClient.subscribe('/topic/greetings', function (response) {
+            showGreeting(response);
         });
     });
 }
@@ -50,8 +52,28 @@ function sendName() {
     stompClient.send("/app/hello", {}, JSON.stringify(taskdata));
 }
 
-function showGreeting(message) {
-    $("#greetings").append("<tr><td>" + message + "</td></tr>");
+function showGreeting(response) {
+	var json = JSON.parse(response.body);
+	var chk = "<input type='checkbox' value=''/>";
+	var content = "<code id='js' style='display:none'>" + response.body + "</code>";
+	content = "<tr><td>" + chk + json.cmd + content + "</td></tr>";
+    $("#greetings").append(content);
+}
+
+function runTask() {
+	var selected = new Array();
+	$('#greetings input[type="checkbox"]:checked').each(function() {
+		var obj = JSON.parse($(this).next().text());
+		selected.push(obj); 
+	});
+	console.log(selected);
+}
+
+function onRunformSubmitEvent() {
+	listform.addEventListener('submit', function(event){
+		runTask();
+		event.preventDefault();	
+	}, true);	
 }
 
 $(function () {
@@ -61,5 +83,6 @@ $(function () {
     $( "#connect" ).click(function() { connect(); });
     $( "#disconnect" ).click(function() { disconnect(); });
     $( "#send" ).click(function() { sendName(); });
+    onRunformSubmitEvent();
 });
 
