@@ -35,46 +35,67 @@
 		</div>
 		<div class="row">
 			<div class="col-md-6">
-				<form class="form-inline" id="taskform">
+				<form class="form-horizontal" id="taskform">
 					<div class="form-group">
-						<label for="env_name">Name of Virtual Env</label> <input type="text"
+						<label for="env_name" class="control-label col-sm-4">CondaEnv</label> 
+						<div class="col-sm-8">
+							<input type="text"
 							id="env_name" class="form-control" placeholder="conda env name...">
+						</div>
+						
 					</div>
 					<div class="form-group">
-						<label for="cuda_devs">Number of Devices to use</label> <input type="text"
+						<label for="cuda_devs" class="control-label col-sm-4">Number of GPU to use</label> 
+						<div class="col-sm-8">
+							<input type="text"
 							id="cuda_devs" class="form-control" placeholder="1,2,3...">
+						</div>
 					</div>
 					<div class="form-group">
-						<label for="run_cmd">Actual Command:</label> <input type="text"
+						<label for="run_cmd" class="control-label col-sm-4">Actual Command:</label> 
+						<div class="col-sm-8">
+							<input type="text"
 							id="run_cmd" class="form-control" placeholder="your command here...">
+						</div>
 					</div>
 					<div class="form-group">
-						<label for="workdir">Execute directory:</label> <input type="text"
+						<label for="workdir" class="control-label col-sm-4">Execute directory:</label> 
+						<div class="col-sm-8">
+							<input type="text"
 							id="workdir" class="form-control" placeholder="working dir here..." value="~/tf_home/fed_test/models">
+						</div>
 					</div>									
 					<button id="send" class="btn btn-default" type="submit">Save</button>
 				</form>
 			</div>		
 			<div class="col-md-6">
 				<form class="form" id="listform">
-					<div class="radio">
-						<label><input type="radio" name="host">QCIS</label>
-					</div>
-					<div class="radio">
-						<label><input type="radio" name="host">Private_nodes (delta, beta)</label>
-					</div>
 					<button id="start" class="btn btn-default" type="submit">Start</button>
 				</form>
 				<table id="conversation" class="table table-striped">
 					<thead>
 						<tr>
-							<th>Greetings</th>
+							<th>Delta</th>
 						</tr>
 					</thead>
 					<tbody id="greetings">
 					</tbody>
 				</table>
 			</div>
+		</div>
+		<div class="row" id="all-task-finished">
+			<table id="finished-table" class="table table-striped">
+					<thead>
+						<tr>
+							<th>Host</th>
+							<th>Task cmd</th>
+							<th>Finished Time</th>
+							<th>View</th>
+						</tr>
+					</thead>
+					<tbody id="view-finish">
+					</tbody>			
+			</table>
 		</div>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"

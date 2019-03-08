@@ -9,6 +9,7 @@ import org.cai.exception.FileStorageException;
 import org.cai.exception.FileWritingException;
 import org.cai.property.FileStorageProperties;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
 
@@ -59,4 +60,9 @@ public class FileStorageService {
 	        }    	
     	}
     }
+
+	public Resource loadFileAsResource(String taskid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -47,10 +47,5 @@ public class GreetingController {
 		taskmeta.setCmd(cmd);
 		return taskmeta;
 
-		//File scriptFile = new File(script);
-		//String ssh_cmd = "cd " + scriptFile.getParent() + "; ssh -t delta \"$(cat script.txt)\" | tee -a out.txt ";
-		//String ssh_cmd = "ssh delta date";
-		//String[] cmds = {"cmd", "/C", ssh_cmd };
-		//cmdService.executeCommand(cmds);
 	}
 }

@@ -1,23 +1,43 @@
 package org.cai.payload;
 
-public class Taskmeta {
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.annotations.Expose;
 
+public class Taskmeta {
+	
+	private final Gson gson;	
+
+	@Expose
     private String scptxt;
+	@Expose
     private String id;
+	@Expose
     private String desc;
+	@Expose
     private Integer subtask;
+	@Expose
     private String stime;
+	@Expose
     private String etime;
+	@Expose
     private String host;
+	@Expose
     private String cmd;
 
     public Taskmeta() {
+    	this.gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
     }
 
 	public Taskmeta(String id, String scptxt) {
 		super();
 		this.scptxt = scptxt;
 		this.id = id;
+		this.gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+	}
+	
+	public String toJson() {
+		return gson.toJson(this);
 	}
 
 	public String getScptxt() {

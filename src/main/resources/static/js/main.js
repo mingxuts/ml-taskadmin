@@ -31,6 +31,13 @@ function connect() {
         stompClient.subscribe('/topic/greetings', function (response) {
             showGreeting(response);
         });
+        stompClient.subscribe('/topic/taskcommence', function(response){
+        	console.log(response);
+        });
+        stompClient.subscribe('/topic/alltaskfinished', function(response){
+        	onEndTask(response);
+        	dequeueTask(response);
+        })
     });
 }
 
@@ -56,7 +63,8 @@ function showGreeting(response) {
 	var json = JSON.parse(response.body);
 	var chk = "<input type='checkbox' value=''/>";
 	var content = "<code id='js' style='display:none'>" + response.body + "</code>";
-	content = "<tr><td>" + chk + json.cmd + content + "</td></tr>";
+	var name = json.id;
+	content = "<tr name='" + json.id + "'><td>" + chk + json.cmd + content + "</td></tr>";
     $("#greetings").append(content);
 }
 
@@ -67,6 +75,22 @@ function runTask() {
 		selected.push(obj); 
 	});
 	console.log(selected);
+	stompClient.send("/app/taskcommence", {}, JSON.stringify(selected));
+}
+
+function onEndTask(response) {
+	var json = JSON.parse(response.body);
+	var link = "/viewoutput/" + json.id;
+	var content = "<tr><td>" + json.host + "</td>";
+	content += "<td>" + json.cmd + "</td>";
+	content += "<td>" + json.etime + "</td>";
+	content += "<td>" + "<a target='_blank' href='" + link + "'>View stdout</a>" + "</td></tr>";
+	$('#view-finish').append(content);
+}
+
+function dequeueTask(response) {
+	var json = JSON.parse(response.body);
+	$("#greetings tr[name='" + json.id + "']").remove();
 }
 
 function onRunformSubmitEvent() {
