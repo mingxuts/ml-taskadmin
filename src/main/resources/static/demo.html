@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Basic Three.js App</title>
+	<style type="text/css">
+		html, body {margin: 0; padding: 0; overflow: hidden}
+		#gui { position: absolute; top: 2px; left: 2px }		
+			#info {
+				position: absolute;
+				top: 0px; width: 100%;
+				color: #ffffff;
+				padding: 5px;
+				font-family:Monospace;
+				font-size:17px;
+				text-align:center;
+				z-index:1000;
+			}		
+	</style>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>	
+</head>
+<body>
+	<!-- Modal -->
+	<div class="modal fade" id="picModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document" style="max-width: 800px;">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h3 class="modal-title" id="exampleModalLabel" style="overflow: hidden; max-height: 40px;"></h3>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <div class="row">
+	        	<div class="col-3">
+	        		
+				<div class="list-group" id="myList" role="tablist">
+				  <a class="list-group-item list-group-item-action" data-toggle="list" href="#clus1" role="tab">Cohort 1</a>
+				  <a class="list-group-item list-group-item-action" data-toggle="list" href="#clus2" role="tab">Cohort 2</a>
+				  <a class="list-group-item list-group-item-action" data-toggle="list" href="#clus3" role="tab">Cohort 3</a>
+				  <a class="list-group-item list-group-item-action" data-toggle="list" href="#clus4" role="tab">Cohort 4</a>
+				  <a class="list-group-item list-group-item-action" data-toggle="list" href="#clus5" role="tab">Cohort 5</a>
+				</div>
+				</div>
+
+				<div class="col-9">
+				<div class="tab-content">
+				  <div class="tab-pane active" id="clus1" role="tabpanel">
+
+				  	<!-- Age stats -->
+				  	<h2>Age</h2>
+				  	<table class="table">
+				  		<tr>
+				  			<th>Children</th>
+				  			<th>6-17</th>
+				  			<th>18~35</th>
+				  			<th>36~60</th>
+				  			<th>&gt;61</th>
+				  		</tr>
+				  		<tr>
+				  			<td>23.3</td>
+				  			<td>4.37</td>
+				  			<td>39.51</td>
+				  			<td>6.55</td>
+				  			<td>26.26</td>
+				  		</tr>
+				  	</table>
+
+				  	<!-- Gender stats -->
+				  	<h2>Gender</h2>
+				  	<table class="table">
+				  		<tr>
+				  			<th>Male  </th>
+				  			<th>Female</th>
+				  		</tr>
+				  		<tr>
+				  			<td>51</td>
+				  			<td>49</td>
+				  		</tr>
+				  	</table>	
+
+				  	<!-- Fake patients -->
+				  	<p>
+				  		<a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Toggle Patient List</a>
+				  	</p>			  	
+				  	    <div class="collapse multi-collapse" id="multiCollapseExample1">
+					      <div class="card card-body">
+								<nav class="nav">
+									<a class="nav-link journey" href="" target="_blank">Ester Carrasquillo</a>
+									<a class="nav-link journey" href="" target="_blank">Livia Tolar</a>
+									<a class="nav-link journey" href="" target="_blank">Mavis Rothwell</a>
+								</nav>
+					      </div>
+					    </div>
+
+				  	<!-- Location Map -->
+				  	<img src="geo_images/geo_0.PNG" height="251" width="570">
+				  </div>
+				  <div class="tab-pane" id="clus2" role="tabpanel">
+				  	<h2>Age</h2>
+				  	<table class="table">
+				  		<tr>
+				  			<th>Children</th>
+				  			<th>6-17</th>
+				  			<th>18~35</th>
+				  			<th>36~60</th>
+				  			<th>&gt;61</th>
+				  		</tr>
+				  		<tr>
+				  			<td>60.00</td>
+				  			<td>5.12</td>
+				  			<td>15.75</td>
+				  			<td>10.76</td>
+				  			<td>10.73</td>
+				  		</tr>
+				  	</table>
+				  	<h2>Gender</h2>
+				  	<table class="table">
+				  		<tr>
+				  			<th>Male  </th>
+				  			<th>Female</th>
+				  		</tr>
+				  		<tr>
+				  			<td>91</td>
+				  			<td>9</td>
+				  		</tr>
+				  	</table>
+				  	<!-- Fake patients -->
+				  	<p>
+				  		<a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Toggle Patient List</a>
+				  	</p>			  	
+				  	    <div class="collapse multi-collapse" id="multiCollapseExample1">
+					      <div class="card card-body">
+								<nav class="nav">
+									<a class="nav-link journey" href="" target="_blank">Jenny Gratton</a>
+									<a class="nav-link journey" href="" target="_blank">Venessa Luce</a>
+									<a class="nav-link journey" href="" target="_blank">Clemencia Vone</a>
+									<a class="nav-link journey" href="" target="_blank">Denessie Bar</a>
+								</nav>
+					      </div>
+					    </div>
+				  	<img src="geo_images/geo_1.PNG" height="251" width="570">
+				  </div>
+				  <div class="tab-pane" id="clus3" role="tabpanel">
+				  	<h2>Age</h2>
+				  	<table class="table">
+				  		<tr>
+				  			<th>Children</th>
+				  			<th>6-17</th>
+				  			<th>18~35</th>
+				  			<th>36~60</th>
+				  			<th>&gt;61</th>
+				  		</tr>
+				  		<tr>
+				  			<td>4.1</td>
+				  			<td>20.02</td>
+				  			<td>14.94</td>
+				  			<td>54.57</td>
+				  			<td>6.37</td>
+				  		</tr>
+				  	</table>
+				  	<h2>Gender</h2>
+				  	<table class="table">
+				  		<tr>
+				  			<th>Male  </th>
+				  			<th>Female</th>
+				  		</tr>
+				  		<tr>
+				  			<td>80</td>
+				  			<td>20</td>
+				  		</tr>
+				  	</table>
+				  	<!-- Fake patients -->
+				  	<p>
+				  		<a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Toggle Patient List</a>
+				  	</p>			  	
+				  	    <div class="collapse multi-collapse" id="multiCollapseExample1">
+					      <div class="card card-body">
+								<nav class="nav">
+									<a class="nav-link journey" href="" target="_blank">Stefany Kowal</a>
+									<a class="nav-link journey" href="" target="_blank">Jenny Lisk</a>
+								</nav>
+					      </div>
+					    </div>				  
+				  	<img src="geo_images/geo_2.PNG" height="251" width="570">
+				  </div>
+				  <div class="tab-pane" id="clus4" role="tabpanel">
+				  	<h2>Age</h2>
+				  	<table class="table">
+				  		<tr>
+				  			<th>Children</th>
+				  			<th>6-17</th>
+				  			<th>18~35</th>
+				  			<th>36~60</th>
+				  			<th>&gt;61</th>
+				  		</tr>
+				  		<tr>
+				  			<td>15.23</td>
+				  			<td>52.03</td>
+				  			<td>10.76</td>
+				  			<td>7.18</td>
+				  			<td>14.8</td>
+				  		</tr>
+				  	</table>
+				  	<h2>Gender</h2>
+				  	<table class="table">
+				  		<tr>
+				  			<th>Male  </th>
+				  			<th>Female</th>
+				  		</tr>
+				  		<tr>
+				  			<td>75</td>
+				  			<td>25</td>
+				  		</tr>
+				  	</table>
+				  	<!-- Fake patients -->
+				  	<p>
+				  		<a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Toggle Patient List</a>
+				  	</p>			  	
+				  	    <div class="collapse multi-collapse" id="multiCollapseExample1">
+					      <div class="card card-body">
+								<nav class="nav">
+								</nav>
+					      </div>
+					    </div>				  					  					  	
+				  	<img src="geo_images/geo_3.PNG" height="251" width="570">
+				  </div>
+				  <div class="tab-pane" id="clus5" role="tabpanel">
+				  	<h2>Age</h2>
+				  	<table class="table">
+				  		<tr>
+				  			<th>Children</th>
+				  			<th>6-17</th>
+				  			<th>18~35</th>
+				  			<th>36~60</th>
+				  			<th>&gt;61</th>
+				  		</tr>
+				  		<tr>
+				  			<td>12.17</td>
+				  			<td>62.74</td>
+				  			<td>3.27</td>
+				  			<td>17.11</td>
+				  			<td>10.72</td>
+				  		</tr>
+				  	</table>
+				  	<h2>Gender</h2>
+				  	<table class="table">
+				  		<tr>
+				  			<th>Male  </th>
+				  			<th>Female</th>
+				  		</tr>
+				  		<tr>
+				  			<td>84</td>
+				  			<td>16</td>
+				  		</tr>
+				  	</table>
+				  	<!-- Fake patients -->
+				  	<p>
+				  		<a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Toggle Patient List</a>
+				  	</p>			  	
+				  	    <div class="collapse multi-collapse" id="multiCollapseExample1">
+					      <div class="card card-body">
+								<nav class="nav">
+								</nav>
+					      </div>
+					    </div>				  	
+				  	<img src="geo_images/geo_4.PNG" height="251" width="570">
+				  </div>			  
+				</div>
+				</div>
+			</div>        
+	      </div>
+	      <div class="modal-footer">
+			<a id="wc" class="btn btn-primary" href="" target="_blank" role="button">Show WordCloud</a>	      	
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+
+
+	<div id="webgl"></div>
+	<div class = 'moveGUI'></div>
+	<div id="info"></div>		
+	<script src="js/dat.gui.min.js"></script>
+	<script src="js/three.min.js"></script>
+	<script src="js/GLTFLoader.js"></script>
+	<script src="js/OrbitControls.js"></script>
+	<script src="./main.js"></script>
+  <script>
+  		$('#picModal').modal({ show: false});
+
+		var scene;
+		function myFunction() {
+		    $("#info").innerHTML = "System time: " + Date();
+		}  	
+	
+	  window.setInterval(myFunction, 1000);
+
+	  $.getJSON('./data/objects.json', function(data) {
+	  //console.log(objects[0].tsne0);
+	    scene = init(data);    
+	  });
+    
+  </script>	
+</body>
+</html>

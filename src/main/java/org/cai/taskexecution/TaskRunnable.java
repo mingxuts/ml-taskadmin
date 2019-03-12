@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Component;
 
+
+// A bash tutorial which I think very good: http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO-7.html
 @Component
 public class TaskRunnable implements Runnable {
 	
@@ -24,8 +26,6 @@ public class TaskRunnable implements Runnable {
 	private @Autowired CommandService cmdService;
 	
 	private @Value("${system.shell}") String shell;
-	
-	private @Value("${remote}") String remote;
 	
 	private @Value("${keyfile-path}") String keyfile;
 	
@@ -53,7 +53,7 @@ public class TaskRunnable implements Runnable {
 				try {
 					Thread.sleep(200);
 					doTask(task);
-					System.out.println("task " + idx + " is finished");
+					System.out.println("task " + idx + "@" + task.getHost() + " is finished");
 				} catch (InterruptedException e) {
 	                e.printStackTrace();
 	            }
@@ -67,9 +67,9 @@ public class TaskRunnable implements Runnable {
 		String ssh_cmd = "cd %1$s; ssh %2$s $(cat script.txt) | tee -a out.txt ";
 		String login;
 		if ("".equals(keyfile)) {
-			login = remote;
+			login = taskmeta.getHost();
 		} else 
-			login = " -i " + keyfile + " " + remote;
+			login = " -i " + keyfile + " " + taskmeta.getHost();
 		ssh_cmd = String.format(ssh_cmd, scriptFile.getParent(), login);
 		//String ssh_cmd = "ssh delta date";
 		String[] cmds = {shell, "-c", ssh_cmd };
@@ -77,8 +77,6 @@ public class TaskRunnable implements Runnable {
 
 		String etime = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
 		taskmeta.setEtime(etime);
-		String host = "delta";
-		taskmeta.setHost(host);
 		String json = taskmeta.toJson();
 		System.out.println(json);		
 		this.template.convertAndSend(channeltoSend, json);

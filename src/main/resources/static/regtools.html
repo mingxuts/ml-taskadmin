@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+<title>Tool Page</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<!-- <link rel="stylesheet" href="/css/main.css" /> -->
+</head>
+<body>
+	<noscript>
+		<h2>Sorry! Your browser doesn't support Javascript</h2>
+	</noscript>
+	<div class="container">
+		<div class="page-header">
+			<h2> Repeat Command by pattern </h2>
+		</div>
+		<div class="row">
+			<div id="toolform" class="col-sm-7">
+				<div class="form-group">
+					<label class="control-label" for="cmdinput">Your basic command</label>
+					<div>
+						<input type="text"
+						id="cmdinput" class="form-control" placeholder="Your command here...">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row form-inline">
+				<div class="form-group">
+					<label class="control-label col-sm-3" style="padding-left: 40px;" for="argname">Argument:</label>
+					<div class="col-sm-3">
+						<input type="text" id="argname"  class="form-control" placeholder="" >
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="argrange">Range:</label>
+					<div class="col-sm-4">
+						<input type="text" id="argrange"  class="form-control" placeholder="" >
+					</div>					
+				</div>		
+		</div>
+		<div id="row button-container">
+			<form class="form" id="buttonform">
+				<button id="generate" class="btn btn-primary" type="submit">Generate</button>
+			</form>			
+		</div>
+		<div class="row" style="height: 20px;"></div>
+		<div class="form-row">
+			<div class="form-group">
+				<textarea id="batch_cmd_txtara" class="col-sm-7" cols=150 rows=12></textarea>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+	<script src="js/regtools.js"></script>
+</body>
+</html>

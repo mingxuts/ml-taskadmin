@@ -21,9 +21,6 @@ public class GreetingController {
 	@Autowired
 	private FileStorageService fileStorageService;
 
-	@Autowired
-	private CommandService cmdService;
-
 	@MessageMapping("/hello")
 	@SendTo("/topic/greetings")
 	public Taskmeta greeting(HelloMessage message) throws Exception {
@@ -38,6 +35,7 @@ public class GreetingController {
 		String dev = message.getCudadevs();
 		String cmd = message.getRuncmd();
 		String workdir = message.getWorkdir();
+		String host = message.getHost();
 		System.out.print(shscr.toString(env, dev, cmd, workdir));
 
 		String taskdir = Generators.randomBasedGenerator().generate().toString();
@@ -45,6 +43,7 @@ public class GreetingController {
 		
 		Taskmeta taskmeta = new Taskmeta(taskdir, script);
 		taskmeta.setCmd(cmd);
+		taskmeta.setHost(host);
 		return taskmeta;
 
 	}

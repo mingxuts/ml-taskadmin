@@ -6,6 +6,7 @@ public class HelloMessage {
     private String cudadevs;
     private String runcmd;
     private String workdir;
+    private String host;
 
     public HelloMessage() {
     }
@@ -48,6 +49,14 @@ public class HelloMessage {
 
 	public void setCudadevs(String cudadevs) {
 		this.cudadevs = cudadevs;
+	}
+
+	public String getHost() {
+		return host;
+	}
+
+	public void setHost(String host) {
+		this.host = host;
 	}
 	
 }
