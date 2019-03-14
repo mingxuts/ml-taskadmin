@@ -64,7 +64,7 @@ public class TaskRunnable implements Runnable {
 	
 	public void doTask(Taskmeta taskmeta) {
 		File scriptFile = new File(taskmeta.getScptxt());
-		String ssh_cmd = "ssh %2$s \"$(cat script.txt)\" | tee -a out.txt ";
+		String ssh_cmd = "ssh %2$s < script.txt) | tee -a out.txt ";
 		String login;
 		if ("".equals(keyfile)) {
 			login = taskmeta.getHost();
