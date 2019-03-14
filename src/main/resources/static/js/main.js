@@ -25,17 +25,11 @@ function isEmpty(str) {
 function replacethenAdd(seq) {
 	if (!isEmpty(seq)) {
 		var str = cmdInput.value;
-		var re_txt = new RegExp("\\s(-+" + argName.value + ")\\s[a-zA-Z]*\\b");
-		
-		var re_num = new RegExp("\\s(-+" + argName.value + ")\\s[0-9]*\\b");
-		
-		var replaced = "";
-		
-		if (re_txt.test(str))
-			replaced = str.replace(re_txt, " $1 " + seq);
-		if (re_num.test(str))
-			replaced = str.replace(re_num, " $1 " + seq);
-		textArea.value = textArea.value + replaced;
+		//console.log(str);
+		var re_txt = new RegExp("\\s(-+" + argName.value + ")\\s*([\\S\\d\\b$]*)");		
+		//var re_num = new RegExp("\\s(-+" + argName.value + ")\\s[0-9]*\\b");
+		//console.log(seq);
+		textArea.value = textArea.value + str.replace(re_txt, " $1 " + seq);
 	}
 }
 

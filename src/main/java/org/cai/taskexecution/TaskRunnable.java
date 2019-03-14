@@ -72,6 +72,7 @@ public class TaskRunnable implements Runnable {
 			login = " -i " + keyfile + " " + taskmeta.getHost();
 		ssh_cmd = String.format(ssh_cmd, scriptFile.getParent(), login);
 		//String ssh_cmd = "ssh delta date";
+		//TODO now on windows the shell has been set to powershell, remeber to change it if on win
 		String[] cmds = {shell, "-c", ssh_cmd };
 		this.cmdService.executeCommand(cmds);
 

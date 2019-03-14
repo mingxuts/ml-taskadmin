@@ -43,7 +43,7 @@ public class Script {
 			str += "cd " + workdirectory;
 			str += addCommaEnd();
 		}
-		str += "CUDA_VISIBLE_DEVICES=" + device + " ";
+		str += "export CUDA_VISIBLE_DEVICES=" + device + addCommaEnd();
 		str += cmd + addCommaEnd();
 		str += "exit" + addCommaEnd();
 		return str;
