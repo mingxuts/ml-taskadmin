@@ -64,7 +64,7 @@ public class TaskRunnable implements Runnable {
 	
 	public void doTask(Taskmeta taskmeta) {
 		File scriptFile = new File(taskmeta.getScptxt());
-		String ssh_cmd = "cd %1$s; ssh %2$s $(cat script.txt) | tee -a out.txt ";
+		String ssh_cmd = "ssh %2$s \"$(cat script.txt)\" | tee -a out.txt ";
 		String login;
 		if ("".equals(keyfile)) {
 			login = taskmeta.getHost();
@@ -73,9 +73,8 @@ public class TaskRunnable implements Runnable {
 		ssh_cmd = String.format(ssh_cmd, scriptFile.getParent(), login);
 		//String ssh_cmd = "ssh delta date";
 		//TODO now on windows the shell has been set to powershell, remeber to change it if on win
-		//String[] cmds = {shell, "-c", ssh_cmd };
-		String[] cmds = {ssh_cmd};
-		this.cmdService.executeCommand(cmds);
+		String[] cmds = {shell, "-c", ssh_cmd };
+		this.cmdService.executeCommand(cmds, new String[]{}, new File(scriptFile.getParent()));
 
 		String etime = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
 		taskmeta.setEtime(etime);

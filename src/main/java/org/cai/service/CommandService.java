@@ -1,6 +1,7 @@
 package org.cai.service;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStreamReader;
 
 import org.springframework.stereotype.Service;
@@ -8,14 +9,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class CommandService {
 
-	public String executeCommand(String[] command) {
+	public String executeCommand(String[] command, String[] envp, File dir) {
 		
 		//System.out.println("running subprocess, " + command);
 		StringBuffer output = new StringBuffer();
 
 		Process p = null;
 		try {
-			p = Runtime.getRuntime().exec(command);
+			p = Runtime.getRuntime().exec(command, envp, dir);
 			p.waitFor();
 			BufferedReader reader = new BufferedReader(new InputStreamReader(
 					p.getInputStream()));
