@@ -44,7 +44,6 @@ public class Script {
 		}
 		str += "export CUDA_VISIBLE_DEVICES=" + device + addCommaEnd();
 		str += cmd + addCommaEnd();
-		str += "exit" + addCommaEnd();
 		return str;
 	}
 	
