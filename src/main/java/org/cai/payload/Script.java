@@ -11,7 +11,7 @@ public class Script {
 		// Default value for those are:
 		this.interpreter = "#!/bin/bash";
 		this.lineEndings = "\n";
-		this.envPrepare = "source activate";
+		this.envPrepare = ". ~/anaconda3/etc/profile.d/conda.sh;conda activate";
 	}
 
 	public Script(String interpreter, String lineEndings, String envPrepare) {
@@ -36,7 +36,6 @@ public class Script {
 	public String toString(String env, String device, String cmd, String workdirectory) {
 		String str = this.interpreter;
 		str += this.lineEndings;
-		//str += this.lineEndings;
 		str += this.envPrepare + " " + env;
 		str += addCommaEnd();
 		if (! "".equalsIgnoreCase(workdirectory.trim())) {
