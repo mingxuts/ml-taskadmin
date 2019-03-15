@@ -5,6 +5,7 @@ public class Script {
 	private String interpreter;
 	private String lineEndings;
 	private String envPrepare;
+	private String ON_ALL_AVL_CUDA = "-1";
 	
 	
 	public Script() {
@@ -42,7 +43,10 @@ public class Script {
 			str += "cd " + workdirectory;
 			str += addCommaEnd();
 		}
-		str += "export CUDA_VISIBLE_DEVICES=" + device + addCommaEnd();
+		// We will determin if this machine is exclusive to us, 
+		// then we use -1 means run all GPUs
+		if (!ON_ALL_AVL_CUDA.equals(device.trim()))
+		  str += "export CUDA_VISIBLE_DEVICES=" + device + addCommaEnd();
 		str += cmd + addCommaEnd();
 		return str;
 	}
